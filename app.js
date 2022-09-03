@@ -53,7 +53,7 @@ app.use((req, res, next) => {
     next();
 })
 app.use('/', (req, res, next) => {
-    res.statusCode(200).json({ "message": "welcole to blogpost api" })
+    res.status(200).json({ "message": "welcole to blogpost api" })
 })
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
