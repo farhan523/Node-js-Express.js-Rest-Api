@@ -82,7 +82,7 @@ exports.getPostById = (req, res, next) => {
         }).catch((err) => {
             const error = new Error('could not find post.')
             error.statusCode = 404;
-            throw error;
+             next(error);
         })
 }
 
