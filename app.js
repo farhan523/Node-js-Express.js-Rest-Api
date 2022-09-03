@@ -52,9 +52,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Header', 'Content-Type,Authorization');
     next();
 })
-app.use('/', (req, res, next) => {
-    res.status(200).json({ "message": "welcole to blogpost api" })
-})
+
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
 
