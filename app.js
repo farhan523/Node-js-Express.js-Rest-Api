@@ -6,6 +6,7 @@ const { json } = require('body-parser');
 const mongoose = require('mongoose')
 const path = require('path')
 const multer = require('multer')
+const port = process.env.PORT || 8080
 
 const app = express();
 
@@ -67,7 +68,7 @@ app.use((error, req, res, next) => {
 mongoose.connect('mongodb+srv://farhan:e7dAU6DHAmyyktuv@cluster0.bnacrmq.mongodb.net/blog?retryWrites=true&w=majority')
     .then(() => {
         console.log('connect')
-        app.listen(8080)
+        app.listen(port)
     }).catch((error) => {
         console.log(error)
     })
