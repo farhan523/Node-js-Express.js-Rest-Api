@@ -15,6 +15,8 @@ router.post('/signup', [body('email')
     })
     .normalizeEmail(), body('password').isLength({ min: 5 }).withMessage(`password length must be at least 6 `),body('name').trim().isLength({min:5})], authController.signup)
 
-router.post('/login', authController.login)
+router.post('/login', [body('email')
+.isEmail()
+.withMessage('please enter a valid email.'), body('password').isLength({ min: 5 }).withMessage(`password length must be at least 6 `)], authController.login)
 
 module.exports = router;
