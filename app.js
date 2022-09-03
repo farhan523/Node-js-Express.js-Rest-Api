@@ -7,9 +7,10 @@ const mongoose = require('mongoose')
 const path = require('path')
 const multer = require('multer')
 const port = process.env.PORT || 8080
+const helmet = require('helmet')
 
 const app = express();
-
+app.use(helmet())
 
 app.use(json())
 app.use('/images', express.static(path.join(__dirname, 'images')))
@@ -65,7 +66,7 @@ app.use((error, req, res, next) => {
     res.status(status).json({ message: message, data: data })
 })
 
-mongoose.connect('mongodb+srv://farhan:e7dAU6DHAmyyktuv@cluster0.bnacrmq.mongodb.net/blog?retryWrites=true&w=majority')
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.bnacrmq.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?retryWrites=true&w=majority`)
     .then(() => {
         console.log('connect')
         app.listen(port)
